@@ -1,48 +1,48 @@
-# 🤝 Kontribusi
+# 🤝 Contributing
 
-Makasih udah mau bantu Nana jadi lebih baik! 💙
+Thanks for wanting to make Nana even better! 💙
 
-## Cara mulai
+## Getting started
 
-1. **Fork** repo ini.
-2. **Clone** fork kamu:
+1. **Fork** this repository.
+2. **Clone** your fork:
    ```bash
    git clone https://github.com/Nael12-kobo/nanabyte-ai-vtuber.git
    cd nanabyte-ai-vtuber
    ```
-3. Buat branch baru:
+3. Create a new branch:
    ```bash
-   git checkout -b fitur/deskripsi-fitur
+   git checkout -b feature/description-of-feature
    ```
-4. Jalankan & tes:
+4. Run and test:
    ```bash
-   ./run.sh        # pastikan aplikasi tetap jalan normal
+   ./run.sh        # make sure the app still works as expected
    ```
-5. Commit, push, lalu buat **Pull Request**.
+5. Commit, push, then open a **Pull Request**.
 
-## Aturan kecil
+## Small rules
 
-- **Bahasa Indonesia** untuk kode, komentar, dan pesan commit.
-- Ikuti gaya kode yang sudah ada (indentasi 4 spasi, fungsi berkomentar singkat).
-- **Jangan commit** file berikut:
+- Keep comments in **Indonesian** to match the existing codebase.
+- Follow the existing code style (4-space indentation, short descriptive comments).
+- **Do not commit** these files:
   - `.venv/`, `venv/`, `__pycache__/`
-  - `memory.json` (data pribadi user)
+  - `memory.json` (user's personal data)
   - `generated_files/`
-- Kalau ubah `requirements.txt`, update juga `run.sh` jika perlu.
-- Pastikan syntax valid sebelum PR:
+- If you change `requirements.txt`, update `run.sh` too if needed.
+- Make sure the syntax is valid before a PR:
   ```bash
   python -m py_compile app.py main.py
   ```
 
-## Melaporkan bug
+## Reporting bugs
 
-Buka **GitHub Issues** dengan format:
+Open a **GitHub Issue** with this format:
 
 ```
-**Deskripsi**: apa yang terjadi?
-**Langkah reproduce**: 1. ... 2. ...
-**Harapan**: seharusnya ...
-**Log/error**: tempel output terminal atau Console (F12)
+**Description**: what happened?
+**Steps to reproduce**: 1. ... 2. ...
+**Expected**: what should have happened
+**Logs/errors**: paste the terminal output or Console (F12)
 ```
 
-Makasih udah berkontribusi! 😸
+Thanks for contributing! 😸

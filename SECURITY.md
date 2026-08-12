@@ -1,20 +1,20 @@
-# 🔐 Keamanan
+# 🔐 Security
 
-## Melaporkan kerentanan
+## Reporting vulnerabilities
 
-Kalau kamu menemukan masalah keamanan, **jangan buat issue publik**. Laporkan lewat GitHub **Security Advisories** (repo → *Security* → *Report a vulnerability*) atau email langsung ke pemilik repo.
+If you find a security issue, **don't open a public issue**. Report it via GitHub **Security Advisories** (repo → *Security* → *Report a vulnerability*) or email the repo owner directly.
 
-Mohon sertakan:
-- Deskripsi singkat kerentanan
-- Langkah reproduce
-- Dampak yang mungkin terjadi
+Please include:
+- A short description of the vulnerability
+- Steps to reproduce
+- The potential impact
 
-## Catatan untuk yang menjalankan sendiri
+## Notes for self-hosting
 
-- `app.py` masih memakai `app.run(debug=True)`. **Jangan expose ke internet publik** tanpa:
-  - mematikan debug mode, dan
-  - memakai production server (gunicorn/waitress) + HTTPS.
-- Ollama berjalan lokal di `127.0.0.1:11434` — pastikan tidak terbuka ke jaringan luar.
-- `memory.json` berisi data pribadi — jangan commit atau bagikan.
-- Edge TTS memakai layanan tak resmi Microsoft; untuk penggunaan komersial besar gunakan TTS resmi.
-- Fitur mic hanya aktif di `localhost`/HTTPS (browser menolak akses mic di HTTP non-local).
+- `app.py` still uses `app.run(debug=True)`. **Don't expose it to the public internet** without:
+  - disabling debug mode, and
+  - using a production server (gunicorn/waitress) + HTTPS.
+- Ollama runs locally on `127.0.0.1:11434` — make sure it's not open to the external network.
+- `memory.json` contains personal data — don't commit or share it.
+- Edge TTS uses Microsoft's unofficial service; for large commercial use, use an official TTS.
+- The mic feature only works on `localhost`/HTTPS (browsers block mic access on non-local HTTP).

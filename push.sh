@@ -1,101 +1,102 @@
 #!/usr/bin/env bash
 # ============================================================
-#  Nana AI VTuber — bantu push ke GitHub (ramah pemula)
+#  Nana AI VTuber — easy GitHub push helper (beginner friendly)
 #
-#  Cara pakai:
-#    ./push.sh                      (nanti ditanya username GitHub)
-#    ./push.sh nael123              (langsung pakai username kamu)
+#  Usage:
+#    ./push.sh                      (will ask for your GitHub username)
+#    ./push.sh nael123              (use your username directly)
 #
-#  PENTING SEBELUMNYA:
-#  1. Sudah punya akun GitHub (github.com)
-#  2. Sudah membuat repo KOSONG bernama "nanabyte-ai-vtuber"
-#     di github.com (klik + → New repository → beri nama →
-#     JANGAN centang "Add a README file" → Create repository)
+#  IMPORTANT BEFORE RUNNING:
+#  1. Have a GitHub account (github.com)
+#  2. Have created an EMPTY repository named "nanabyte-ai-vtuber"
+#     on github.com (click + → New repository → name it →
+#     DO NOT check "Add a README file" → Create repository)
 #
-#  Yang dilakukan script ini:
-#    1. Pastikan repo git + branch main
-#    2. Sambungkan ke repo GitHub kamu (otomatis bikin link)
-#    3. Commit pertama (kalau belum ada)
-#    4. Upload semua file ke GitHub
+#  What this script does:
+#    1. Make sure this is a git repo on the main branch
+#    2. Connect to your GitHub repo (creates the link automatically)
+#    3. Commit changes (if any)
+#    4. Upload everything to GitHub
 # ============================================================
 set -euo pipefail
 
-# Selalu kerja dari folder project
+# Always work from the project folder
 cd "$(dirname "$0")"
 
 GITHUB_USER="${1:-}"
 REPO_NAME="nanabyte-ai-vtuber"
 
 echo "=================================================="
-echo "  🚀 Push Nana AI VTuber ke GitHub"
+echo "  🚀 Push Nana AI VTuber to GitHub"
 echo "=================================================="
 
-# --- 1) Pastikan git repo ---------------------------------
+# --- 1) Make sure it's a git repo ------------------------
 if [ ! -d .git ]; then
-    echo "[1/4] Menginisialisasi git..."
+    echo "[1/4] Initializing git..."
     git init -b main
 else
-    echo "[1/4] Repo git sudah ada."
+    echo "[1/4] Git repo already exists."
 fi
 
-# --- 2) Pastikan branch main ------------------------------
+# --- 2) Make sure we're on the main branch ---------------
 if [ "$(git branch --show-current)" != "main" ]; then
     git branch -m main 2>/dev/null || true
 fi
 
-# --- 3) Sambungkan ke GitHub ------------------------------
+# --- 3) Connect to GitHub --------------------------------
 if git remote | grep -q origin; then
-    echo "[2/4] Remote sudah tersambung: $(git remote get-url origin)"
+    echo "[2/4] Remote already connected: $(git remote get-url origin)"
 else
     echo ""
-    echo "  ➜ Pastikan kamu SUDAH membuat repo kosong bernama"
-    echo "    \"${REPO_NAME}\" di github.com (New repository)."
+    echo "  ➜ Make sure you have ALREADY created an empty repository named"
+    echo "    \"${REPO_NAME}\" on github.com (New repository)."
     echo ""
     while [ -z "$GITHUB_USER" ]; do
-        echo "  ➜ Username GitHub kamu (contoh: nael123):"
-        echo "    Kalau login pakai Google: lihat pojok kanan atas"
-        echo "    github.com → 'Signed in as @namakamu' → ketik namakamu."
+        echo "  ➜ Enter your GitHub username (e.g. nael123):"
+        echo "    If you log in with Google: check the top-right corner of"
+        echo "    github.com → 'Signed in as @yourname' → type yourname."
         read -r GITHUB_USER
         GITHUB_USER="${GITHUB_USER//[[:space:]]/}"
         if [ -z "$GITHUB_USER" ]; then
-            echo "  ⚠ Username tidak boleh kosong. Coba lagi:"
+            echo "  ⚠ Username cannot be empty. Try again:"
         fi
     done
     REMOTE_URL="https://github.com/${GITHUB_USER}/${REPO_NAME}.git"
-    echo "[2/4] Menyambungkan ke: ${REMOTE_URL}"
+    echo "[2/4] Connecting to: ${REMOTE_URL}"
     git remote add origin "$REMOTE_URL"
 fi
 
-# --- 4) Commit perubahan (kalau ada) ----------------------
+# --- 4) Commit changes (if any) --------------------------
 git add -A
 if git diff --cached --quiet; then
-    echo "[3/4] Tidak ada perubahan baru — semua sudah ter-commit ✓"
+    echo "[3/4] No new changes — everything is already committed ✓"
 else
-    # Git butuh identitas untuk commit — cek dulu biar tidak error misterius
+    # Git needs your identity to commit — check first to avoid a cryptic error
     if [ -z "$(git config user.name)" ] || [ -z "$(git config user.email)" ]; then
         echo ""
-        echo "  ⚠ Git belum tahu identitas kamu. Jalankan dulu (sekali saja):"
-        echo "      git config --global user.name  \"Nama Kamu\""
-        echo "      git config --global user.email \"email-kamu@contoh.com\""
-        echo "  Lalu jalankan lagi: ./push.sh"
+        echo "  ⚠ Git doesn't know your identity yet. Run this once:"
+        echo "      git config --global user.name  \"Your Name\""
+        echo "      git config --global user.email \"your-email@example.com\""
+        echo "  Then run ./push.sh again."
         echo ""
         exit 1
     fi
-    echo "[3/4] Membuat commit..."
+    echo "[3/4] Creating commit..."
     git commit -m "✨ Update Nana AI VTuber"
 fi
 
-echo "  ⚠️ KALAU DIMINTA LOGIN:"
-echo "     Username : username GitHub kamu"
-echo "     Password : BUKAN password GitHub! Gunakan Personal Access Token"
-echo "                (langkah lengkapnya dijelaskan di chat ini, lihat bawah)."
+echo ""
+echo "  ⚠️ IF ASKED TO LOG IN:"
+echo "     Username : your GitHub username"
+echo "     Password : NOT your GitHub password! Use a Personal Access Token"
+echo "                (full steps are in this chat, see below)."
 echo ""
 
-# --- 5) Upload ke GitHub -----------------------------------
-echo "[4/4] Mengupload file ke GitHub..."
+# --- 5) Upload to GitHub ---------------------------------
+echo "[4/4] Uploading files to GitHub..."
 git push -u origin main
 echo ""
-echo "  ✅ BERHASIL! 🎉"
-echo "     Repo kamu sekarang ada di:"
+echo "  ✅ DONE! 🎉"
+echo "     Your repo is now at:"
 echo "     https://github.com/${GITHUB_USER}/${REPO_NAME}"
 echo "=================================================="
