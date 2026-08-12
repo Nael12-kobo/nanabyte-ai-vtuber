@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nana AI VTuber</title>
+    <link rel="stylesheet" href="/static/style.css" />
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/",
+            "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3/lib/three-vrm.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="app">
+        <main class="viewer-card" aria-label="Tampilan Nana">
+            <div id="vrm-container"></div>
+        </main>
+
+        <header class="top-hud">
+            <button id="menu-toggle" class="menu-toggle" type="button" aria-controls="side-drawer" aria-expanded="false">
+                <span class="menu-icon">☰</span>
+                <span>Menu</span>
+            </button>
+
+            <div class="brand">
+                <strong>Nana AI</strong>
+                <span>AI Companion</span>
+            </div>
+
+            <span class="status">Local AI</span>
+        </header>
+
+        <div id="drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
+
+        <aside id="side-drawer" class="side-drawer" aria-hidden="true">
+            <div class="drawer-header">
+                <div>
+                    <h1>Nana</h1>
+                    <p>Kontrol &amp; pengaturan</p>
+                </div>
+                <button id="drawer-close" class="icon-button" type="button" aria-label="Tutup menu">×</button>
+            </div>
+
+            <div class="drawer-divider"></div>
+
+            <div class="drawer-status">
+                <span id="voice-badge" class="voice-badge">Voice On</span>
+                <span class="drawer-note"></span>
+            </div>
+
+            <div class="control-buttons">
+                <button id="voice-toggle" type="button">Voice: On</button>
+                <button id="stop-speaking" type="button">Stop Bicara</button>
+                <button id="mic-btn" class="wide-button" type="button">🎤 Mic</button>
+                <button id="memory-btn" type="button">Memory</button>
+                <button id="clear-chat" type="button">Clear Chat</button>
+            </div>
+
+            <p class="drawer-help">
+                
+            </p>
+        </aside>
+
+        <!-- Riwayat chat tidak tampil terus; dibuka dari tombol Riwayat. -->
+        <section id="history-sheet" class="history-sheet" aria-hidden="true">
+            <div class="history-head">
+                <div>
+                    <strong>Riwayat Chat</strong>
+                    <span>Scroll hanya di sini</span>
+                </div>
+                <button id="history-close" class="icon-button" type="button" aria-label="Tutup riwayat">×</button>
+            </div>
+
+            <div id="chat-box" class="chat-box">
+                <div class="bubble nana">Halo Nael~ Aku di sini. Mau ngobrol apa?</div>
+            </div>
+        </section>
+
+        <!-- Muncul hanya saat Nana menjelaskan file/kode. -->
+        <section id="review-workspace" class="review-workspace" aria-hidden="true">
+            <div class="review-topbar">
+                <div>
+                    <span class="review-kicker">MODE REVIEW</span>
+                    <h2 id="review-title">Review Kode</h2>
+                </div>
+                <button id="review-close" class="icon-button review-close" type="button" aria-label="Tutup mode review">×</button>
+            </div>
+
+            <div class="review-grid">
+                <article class="review-card preview-card">
+                    <div class="review-card-head">
+                        <div>
+                            <strong>Preview HTML</strong>
+                            <span id="preview-note"></span>
+                        </div>
+                    </div>
+                    <div id="html-preview-empty" class="preview-empty">
+                        Belum ada HTML yang dipreview.
+                    </div>
+                    <iframe
+                        id="html-preview"
+                        class="html-preview hidden"
+                        title="Preview HTML lokal"
+                        sandbox=""
+                    ></iframe>
+                </article>
+
+                <article class="review-card explanation-card">
+                    <div class="review-card-head">
+                        <div>
+                            <strong>Penjelasan Nana</strong>
+                            <span>Ringkas dan fokus ke masalah penting.</span>
+                        </div>
+                    </div>
+
+                    <div id="review-explanation" class="review-explanation">
+                        Import file atau kirim pertanyaan coding untuk membuka penjelasan di sini.
+                    </div>
+
+                    <div class="findings-head">
+                        <strong>Temuan otomatis</strong>
+                        <span>Tekan temuan untuk lompat ke barisnya.</span>
+                    </div>
+                    <div id="auto-findings" class="auto-findings">
+                        <div class="finding neutral">Belum ada file untuk diperiksa.</div>
+                    </div>
+                </article>
+
+                <article class="review-card source-card">
+                    <div class="review-card-head source-head">
+                        <div>
+                            <strong id="source-title">Kode</strong>
+                            <span id="source-note">Kode yang diimport akan tampil di sini.</span>
+                        </div>
+                        <div class="source-actions">
+                            <button id="source-copy" class="small-button" type="button">Salin kode</button>
+                            <button id="editor-fix" class="small-button editor-fix" type="button">Perbaiki Nana</button>
+                            <button id="editor-restore" class="small-button hidden" type="button">Versi asli</button>
+                        </div>
+                    </div>
+
+                    <div id="source-viewer" class="source-viewer">
+                        <div class="source-empty">Belum ada file.</div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="review-download-row">
+                <a id="review-download" class="review-download hidden" href="#">Download File Perbaikan</a>
+            </div>
+        </section>
+
+        <!-- Composer default seperti chat bawah. -->
+        <section class="composer-dock" aria-label="Kirim pesan ke Nana">
+            <div id="attachment-chip" class="attachment-chip hidden">
+                <span id="attachment-name"></span>
+                <button id="attachment-remove" type="button" aria-label="Hapus file">×</button>
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input
+                    id="file-input"
+                    type="file"
+                    accept=".txt,.md,.log,.json,.py,.js,.ts,.html,.htm,.css,.java,.c,.cpp,.cs,.php,.sql,.xml,.yaml,.yml,.ini,.env,.csv"
+                    hidden
+                />
+
+                <button id="file-picker-button" class="attach-button" type="button" aria-label="Import file kode atau log">＋</button>
+
+                <input
+                    id="message-input"
+                    type="text"
+                    placeholder="Ketik pesan ke Nana..."
+                    autocomplete="off"
+                />
+
+                <button id="history-toggle" class="history-button" type="button">Riwayat</button>
+                <button id="coding-toggle" class="coding-button" type="button">Coding</button>
+                <button id="action-cancel" class="cancel-button hidden" type="button">Batal</button>
+                <button type="submit" class="send-button">Kirim</button>
+            </form>
+
+            <p class="composer-help">
+                
+            </p>
+        </section>
+    </div>
+
+    <script type="module" src="/static/app.js"></script>
+    <script type="module" src="/static/mic.js"></script>
+    <script type="module" src="/static/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" font-family="Segoe UI, -apple-system, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f26"/>
+      <stop offset="0.55" stop-color="#161b4a"/>
+      <stop offset="1" stop-color="#2a1a63"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#b388ff"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#3d2b8f"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#4fc3f7" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#4fc3f7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <circle cx="1120" cy="40" r="240" fill="url(#glow)"/>
+  <circle cx="120" cy="340" r="280" fill="url(#glow)"/>
+
+  <!-- bintang -->
+  <g fill="#8ea2ff">
+    <circle cx="90" cy="52" r="2.5"/>
+    <circle cx="210" cy="34" r="2"/>
+    <circle cx="330" cy="60" r="2.5"/>
+    <circle cx="470" cy="40" r="2"/>
+    <circle cx="610" cy="62" r="2.5"/>
+    <circle cx="740" cy="38" r="2"/>
+    <circle cx="885" cy="60" r="2.5"/>
+  </g>
+
+  <!-- kilau -->
+  <g fill="#ffe066">
+    <path d="M132 96 l3.2 8 8 3.2 -8 3.2 -3.2 8 -3.2 -8 -8 -3.2 8 -3.2 z"/>
+    <path d="M250 84 l2.6 6.5 6.5 2.6 -6.5 2.6 -2.6 6.5 -2.6 -6.5 -6.5 -2.6 6.5 -2.6 z" opacity="0.8"/>
+    <path d="M565 100 l2.6 6.5 6.5 2.6 -6.5 2.6 -2.6 6.5 -2.6 -6.5 -6.5 -2.6 6.5 -2.6 z" opacity="0.8"/>
+    <path d="M700 92 l3.2 8 8 3.2 -8 3.2 -3.2 8 -3.2 -8 -8 -3.2 8 -3.2 z" opacity="0.7"/>
+  </g>
+
+  <!-- judul -->
+  <text x="88" y="140" font-size="74" font-weight="800" fill="#ffffff" letter-spacing="2">NANA <tspan fill="url(#accent)">AI</tspan></text>
+  <text x="88" y="212" font-size="74" font-weight="800" fill="url(#accent)" letter-spacing="6">VTUBER</text>
+  <text x="90" y="254" font-size="21" fill="#aab4e0">AI Companion Virtual 3D — ngobrol, bicara, &amp; berekspresi. 100% lokal.</text>
+
+  <!-- chip stack -->
+  <g font-size="14" fill="#cfd8f7">
+    <rect x="90" y="278" width="140" height="30" rx="15" fill="#1b2547" stroke="#33427a"/>
+    <text x="104" y="298">🐍 Python 3.10+</text>
+    <rect x="242" y="278" width="88" height="30" rx="15" fill="#1b2547" stroke="#33427a"/>
+    <text x="256" y="298">⚡ Flask</text>
+    <rect x="342" y="278" width="122" height="30" rx="15" fill="#1b2547" stroke="#33427a"/>
+    <text x="356" y="298">🎀 VRM 3D</text>
+    <rect x="476" y="278" width="128" height="30" rx="15" fill="#1b2547" stroke="#33427a"/>
+    <text x="490" y="298">🤖 Ollama</text>
+    <rect x="616" y="278" width="138" height="30" rx="15" fill="#1b2547" stroke="#33427a"/>
+    <text x="630" y="298">🔊 Edge TTS</text>
+  </g>
+
+  <!-- lingkaran dekoratif -->
+  <circle cx="1070" cy="120" r="118" stroke="#4fc3f7" stroke-width="2" fill="none" opacity="0.14"/>
+  <circle cx="1070" cy="120" r="148" stroke="#b388ff" stroke-width="1.5" fill="none" opacity="0.08"/>
+
+  <!-- balon chat -->
+  <rect x="828" y="118" width="176" height="46" rx="14" fill="#1d2a55" stroke="#33427a"/>
+  <path d="M884 164 l12 12 10 -12 z" fill="#1d2a55"/>
+  <text x="848" y="147" font-size="15" fill="#e8edff">Halo Nael~ 👋</text>
+
+  <!-- karakter Nana -->
+  <g transform="translate(1010,34)">
+    <path d="M14 44 Q12 2 60 0 Q108 2 106 44 L106 60 Q106 92 60 92 Q14 92 14 60 Z" fill="#39476f"/>
+    <circle cx="60" cy="58" r="34" fill="#ffe3c4"/>
+    <path d="M27 50 C27 30 40 22 60 22 C80 22 93 30 93 50 C93 60 80 58 60 58 C40 58 27 60 27 50 Z" fill="#4a5aa8"/>
+    <path d="M14 44 Q18 20 34 16 L36 30 Q24 34 22 58 L20 84 Z" fill="#39476f"/>
+    <path d="M106 44 Q102 20 86 16 L84 30 Q96 34 98 58 L100 84 Z" fill="#39476f"/>
+    <path d="M22 44 Q60 6 98 44" stroke="#7c4dff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="22" cy="50" r="10" fill="#7c4dff"/>
+    <circle cx="98" cy="50" r="10" fill="#7c4dff"/>
+    <circle cx="22" cy="50" r="4" fill="#b388ff"/>
+    <circle cx="98" cy="50" r="4" fill="#b388ff"/>
+    <ellipse cx="47" cy="66" rx="4.5" ry="6" fill="#23234d"/>
+    <ellipse cx="73" cy="66" rx="4.5" ry="6" fill="#23234d"/>
+    <circle cx="49" cy="63" r="1.5" fill="#ffffff"/>
+    <circle cx="75" cy="63" r="1.5" fill="#ffffff"/>
+    <circle cx="40" cy="73" r="3.5" fill="#ffb3b3" opacity="0.55"/>
+    <circle cx="80" cy="73" r="3.5" fill="#ffb3b3" opacity="0.55"/>
+    <path d="M54 80 Q60 85 66 80" stroke="#d97a5f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M38 92 Q36 120 26 152 L94 152 Q84 120 82 92 Z" fill="url(#body)"/>
+    <path d="M48 90 L60 106 L72 90 Z" fill="#e8edff"/>
+  </g>
+
+  <text x="90" y="340" font-size="15" fill="#6f7bb5">💙 dibuat oleh Nael — AI companion virtual pribadi</text>
+</svg>

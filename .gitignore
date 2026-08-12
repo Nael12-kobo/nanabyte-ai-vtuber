@@ -1,0 +1,41 @@
+# ============================================
+#  Nana AI VTuber — file yang TIDAK ikut di-commit
+# ============================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual environment ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Runtime Nana ---
+# Ingatan Nana berisi data pribadi user — jangan di-commit.
+memory.json
+# File hasil review/edit otomatis.
+generated_files/
+
+# --- Env & Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Log ---
+*.log
