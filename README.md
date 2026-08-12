@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Nana AI VTuber" width="100%" />
-</p>
-
-<p align="center">
   <b>💙 AI Companion Virtual 3D</b> — ngobrol, bicara dengan suara natural, berekspresi,
   dan selalu <i>ingat</i> kamu. Berjalan <b>100% lokal</b> di komputermu, ditenagai Ollama.
 </p>
@@ -33,16 +29,6 @@
 | 📝 **Review kode** | Import file → Nana meninjau, menemukan bug, dan menawarkan perbaikan |
 | 🛠️ **Edit kode otomatis** | Nana membuat patch kecil, file hasil perbaikan siap di-download |
 | 📦 **100% lokal & gratis** | Semua jalan di komputermu, privasi terjaga |
-
----
-
-## 🖼️ Preview
-
-<p align="center">
-  <img src="assets/screenshots/preview.svg" alt="Preview UI Nana AI VTuber" width="100%" />
-  <br/>
-  <sub><i>Web UI Nana — avatar 3D, chat, mic, dan mode coding dalam satu layar.</i></sub>
-</p>
 
 ---
 
@@ -108,10 +94,6 @@ nanabyte-ai-vtuber/
 │   ├── style.css            # Tampilan
 │   └── models/
 │       └── nana.vrm         # Model 3D Nana (VRM 0.x, ~15 MB)
-├── assets/
-│   ├── banner.svg           # Banner header README
-│   └── screenshots/
-│       └── preview.svg      # Preview UI (mockup)
 ├── .github/workflows/
 │   └── python-ci.yml        # CI otomatis (syntax + smoke test)
 ├── LICENSE                  # MIT License

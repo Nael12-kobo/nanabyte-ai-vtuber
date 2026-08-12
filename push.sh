@@ -52,7 +52,9 @@ else
     echo "    \"${REPO_NAME}\" di github.com (New repository)."
     echo ""
     while [ -z "$GITHUB_USER" ]; do
-        echo "  ➜ Masukkan username GitHub kamu (contoh: nael123):"
+        echo "  ➜ Username GitHub kamu (contoh: nael123):"
+        echo "    Kalau login pakai Google: lihat pojok kanan atas"
+        echo "    github.com → 'Signed in as @namakamu' → ketik namakamu."
         read -r GITHUB_USER
         GITHUB_USER="${GITHUB_USER//[[:space:]]/}"
         if [ -z "$GITHUB_USER" ]; then
