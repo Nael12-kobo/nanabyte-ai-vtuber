@@ -66,8 +66,11 @@ else
     git remote add origin "$REMOTE_URL"
 fi
 
-# --- 4) Commit pertama (kalau belum ada) -------------------
-if ! git log --oneline -1 >/dev/null 2>&1; then
+# --- 4) Commit perubahan (kalau ada) ----------------------
+git add -A
+if git diff --cached --quiet; then
+    echo "[3/4] Tidak ada perubahan baru — semua sudah ter-commit ✓"
+else
     # Git butuh identitas untuk commit — cek dulu biar tidak error misterius
     if [ -z "$(git config user.name)" ] || [ -z "$(git config user.email)" ]; then
         echo ""
@@ -78,11 +81,8 @@ if ! git log --oneline -1 >/dev/null 2>&1; then
         echo ""
         exit 1
     fi
-    echo "[3/4] Membuat commit pertama..."
-    git add -A
-    git commit -m "✨ Nana AI VTuber: AI companion virtual 3D berbasis Ollama"
-else
-    echo "[3/4] Commit sudah ada. (Jangan lupa: git add -A && git commit kalau ubah file)"
+    echo "[3/4] Membuat commit..."
+    git commit -m "✨ Update Nana AI VTuber"
 fi
 
 echo "  ⚠️ KALAU DIMINTA LOGIN:"

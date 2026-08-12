@@ -35,7 +35,7 @@
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/<username>/nanabyte-ai-vtuber.git
+git clone https://github.com/Nael12-kobo/nanabyte-ai-vtuber.git
 cd nanabyte-ai-vtuber
 
 # 1. Pastikan Ollama terinstall & berjalan: https://ollama.com

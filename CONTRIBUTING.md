@@ -7,7 +7,7 @@ Makasih udah mau bantu Nana jadi lebih baik! 💙
 1. **Fork** repo ini.
 2. **Clone** fork kamu:
    ```bash
-   git clone https://github.com/<username>/nanabyte-ai-vtuber.git
+   git clone https://github.com/Nael12-kobo/nanabyte-ai-vtuber.git
    cd nanabyte-ai-vtuber
    ```
 3. Buat branch baru:

@@ -51,8 +51,11 @@ fi
 USERNAME="$(gh api user -q .login)"
 echo "[3/5] Login sebagai: @${USERNAME} ✓"
 
-# --- 3) Commit pertama (kalau belum ada) -------------------
-if ! git log --oneline -1 >/dev/null 2>&1; then
+# --- 3) Commit perubahan (kalau ada) ----------------------
+git add -A
+if git diff --cached --quiet; then
+    echo "[4/5] Tidak ada perubahan baru — semua sudah ter-commit ✓"
+else
     if [ -z "$(git config user.name)" ] || [ -z "$(git config user.email)" ]; then
         echo ""
         echo "  ⚠ Git belum tahu identitas kamu. Jalankan dulu (sekali saja):"
@@ -62,11 +65,8 @@ if ! git log --oneline -1 >/dev/null 2>&1; then
         echo ""
         exit 1
     fi
-    echo "[4/5] Membuat commit pertama..."
-    git add -A
-    git commit -m "✨ Nana AI VTuber: AI companion virtual 3D berbasis Ollama"
-else
-    echo "[4/5] Commit sudah ada. (Kalau ubah file: git add -A && git commit)"
+    echo "[4/5] Membuat commit..."
+    git commit -m "✨ Update Nana AI VTuber"
 fi
 
 # --- 4) Buat repo (kalau belum) + push ---------------------
